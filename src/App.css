@@ -1,24 +1,80 @@
-.App {
+.life-game{
+  position:relative;
+  font-size: 20px;
+  font-family: 'Indie Flower', cursive;
+
+}
+.life-game_caption{
   text-align: center;
+  font-family: 'Indie Flower', cursive;
+  color:#ff2300;
+}
+.wrapper{
+  display:flex;
+  flex-direction: row;
+  position:relative;
+  margin:0 auto;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.life-game-board{
+  margin-left: 30px;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.controls-frame{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
-.App-intro {
-  font-size: large;
+.start-btn, .clear-btn{
+  margin-bottom: 10px;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.btn{
+  font-size: inherit;
+  font-family: inherit;
+  color:#034569;
+  background-color : #ffc000;
+  font-weight: 400;
+}
+.board-line{
+  height:22px;
+  border-top:1px solid #086ca2;;
+  border-left: 1px solid #086ca2;;
+}
+.btn-cell{
+  width:20px;
+  height: 100%;
+  border-right:1px solid #086ca2;;
+  border-bottom: 1px solid #086ca2;;
+  box-shadow: none;
+  display:inline-block;
+}
+.btn-alive{
+  background-color:#ff2300 ;
+}
+.btn-dead{
+  background-color: #086ca2;
+}
+.btn-newborn{
+  background-color:#FF8582;
+}
+.pushed-btn{
+  background-color:#FF7D36;
+}
+.speed-btn{
+  display:block;
+  margin-bottom: 10px;
+}
+.speed-block_capture{
+  margin-top:0;
+}
+.speed-block{
+  margin-left:30px;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.size-btn{
+  margin-right: 10px;
 }

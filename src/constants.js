@@ -1,0 +1,12 @@
+export const START_GENERATION="START_GENERATION";
+export const  ALIVE = "ALIVE";
+export const  NEWBORN = "NEWBORN";
+export const  DEAD = "DEAD";
+export const SAVE_TIMERID="SAVE_TIMERID";
+export const DELETE_TIMER="DELETE_TIMER";
+export const CHANGE_CELL_VALUE="CHANGE_CELL_VALUE";
+export const SLOW=1000;
+export const MEDIUM=500;
+export const FAST=250;
+export const CHANGE_SPEED="CHANGE_SPEED";
+export const SAVE_SIZE="SAVE_SIZE"

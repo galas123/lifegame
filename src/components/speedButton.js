@@ -24,21 +24,15 @@ class speedBtn extends Component {
   }
 
   onClick = (ev) => {
-    const {changeSpeed, startGame, putTimerIdIntoStorage,deleteTimer,speedValue,isStarted}=this.props;
+    const {changeSpeed, speedValue}=this.props;
     ev.preventDefault();
     changeSpeed(speedValue);
-    if (isStarted) {
-      deleteTimer();
-      let newTimerId = setInterval(startGame, speedValue);
-      putTimerIdIntoStorage(newTimerId);
-    }
   };
 }
 
 const mapStateToProps = state=> {
   return {
     generationSpeed: state.generation.get('generationSpeed'),
-    isStarted            : !!state.timer.timerId,
   };
 }
 

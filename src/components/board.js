@@ -18,7 +18,6 @@ import Line from './line';
   }
 }
 const mapStateToProps = state=> {
-  console.log(state);
   return {
     population: state.generation.get('generations')
   };

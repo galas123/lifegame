@@ -13,13 +13,13 @@ class cell extends Component {
   render() {
     const {value}=this.props;
     const btnClass = classNames({
-      'btn-cell': true,
-      'btn-alive': value===ALIVE,
-      'btn-newborn': value===NEWBORN,
-      'btn-died': value===DEAD
+      'btn-cell'   : true,
+      'btn-alive'  : value === ALIVE,
+      'btn-newborn': value === NEWBORN,
+      'btn-died'   : value === DEAD
     });
     return (
-    <div className={btnClass} onClick={this.onClick}/>
+      <div className={btnClass} onClick={this.onClick}/>
     );
   }
 
@@ -30,5 +30,5 @@ class cell extends Component {
 
   };
 }
- 
+
 export default connect(null, {changeCellValue})(cell);

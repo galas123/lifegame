@@ -38,13 +38,10 @@ export default (state = defaultState, action) => {
       return state.setIn(['boardSize', 0], payload.boardWidth).setIn(['boardSize', 1], payload.boardLength);
     case CHANGE_SPEED:
       return state.set('generationSpeed', payload.speedValue);
-      break;
     case CHANGE_CELL_VALUE:
-      const lineIndex = payload.lineIndex;
-      const rowIndex  = payload.rowIndex;
-      const newValue  = (state.getIn(['generations', lineIndex, rowIndex]) == DEAD) ? NEWBORN : DEAD;
+      const {lineIndex, rowIndex} = payload;
+      const newValue = (state.getIn(['generations', lineIndex, rowIndex]) == DEAD) ? NEWBORN : DEAD;
       return state.setIn(['generations', lineIndex, rowIndex], newValue);
-      break;
     case DELETE_TIMER:
       const width  = state.getIn(['boardSize', 0]);
       const length = state.getIn(['boardSize', 1]);

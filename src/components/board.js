@@ -4,16 +4,16 @@ import React, {
 import {connect} from 'react-redux';
 import Line from './line';
 
- class board extends Component {
+class board extends Component {
   render() {
     const {population}=this.props;
-    const board=population.map((line,index)=>
-    <Line populationLine={line} key={index} lineIndex={index}/>
-      );
+    const board = population.map((line, index)=>
+      <Line populationLine={line} key={index} lineIndex={index}/>
+    );
     return (
       <div className="life-game-board">
-    {board}
-        </div>
+        {board}
+      </div>
     );
   }
 }
@@ -23,4 +23,4 @@ const mapStateToProps = state=> {
   };
 }
 
-export default connect(mapStateToProps,null)(board);
+export default connect(mapStateToProps, null)(board);

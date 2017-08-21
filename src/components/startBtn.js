@@ -8,7 +8,7 @@ import {startGame} from '../AC/startGame';
 class startBtn extends Component {
   render() {
     return (
-      <button className="btn start-btn" onClick={this.onClick}>Start</button>
+      <button type="button" className="btn start-btn" onClick={this.onClick}>Start</button>
     )
   }
 

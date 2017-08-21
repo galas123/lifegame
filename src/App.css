@@ -49,13 +49,13 @@
   box-shadow: none;
   display:inline-block;
 }
-.btn-alive{
+.btn-cell--alive{
   background-color:#ff2300 ;
 }
 .btn-dead{
   background-color: #086ca2;
 }
-.btn-newborn{
+.btn-cell--newborn{
   background-color:#FF8582;
 }
 .pushed-btn{

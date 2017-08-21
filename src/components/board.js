@@ -4,7 +4,7 @@ import React, {
 import {connect} from 'react-redux';
 import Line from './line';
 
-class board extends Component {
+class Board extends Component {
   render() {
     const {population}=this.props;
     const board = population.map((line, index)=>
@@ -19,8 +19,8 @@ class board extends Component {
 }
 const mapStateToProps = state=> {
   return {
-    population: state.generation.get('generations')
+    population: state.generation.get('population')
   };
 }
 
-export default connect(mapStateToProps, null)(board);
+export default connect(mapStateToProps, null)(Board);

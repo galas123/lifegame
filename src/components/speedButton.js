@@ -5,12 +5,12 @@ import {connect} from 'react-redux';
 
 import {changeSpeed} from '../AC/changeSpeed';
 import {iteration} from '../AC/iteration';
-import {putTimerIdIntoStorage} from '../AC/putTimerIdIntoStorage';
+import {saveTimerId} from '../AC/saveTimerId';
 import {deleteTimer} from '../AC/deleteTimer';
 
 import classNames from 'classnames';
 
-class speedBtn extends Component {
+class SpeedBtn extends Component {
   render() {
     const {text, generationSpeed, speedValue}=this.props;
     const btnClass = classNames({
@@ -36,4 +36,4 @@ const mapStateToProps = state=> {
   };
 }
 
-export default connect(mapStateToProps, {changeSpeed, putTimerIdIntoStorage, iteration, deleteTimer})(speedBtn);
+export default connect(mapStateToProps, {changeSpeed, saveTimerId, iteration, deleteTimer})(SpeedBtn);

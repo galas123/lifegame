@@ -1,9 +1,9 @@
-import {SAVE_SIZE} from '../constants';
+import {SAVE_BOARD_SIZE} from '../constants';
 
 export const saveBoardSize = (boardWidth,boardLength) => ({
-  type   : SAVE_SIZE,
+  type   : SAVE_BOARD_SIZE,
   payload: {
     boardWidth,
     boardLength
   }
-})
+});

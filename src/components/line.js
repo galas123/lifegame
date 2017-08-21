@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import Cell from './cell';
 
-export default class line extends Component {
+export default class Line extends Component {
   render() {
     const {populationLine, lineIndex}=this.props;
     const line=populationLine.map((cell,index)=>

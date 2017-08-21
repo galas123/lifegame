@@ -8,7 +8,7 @@ import {saveBoardSize} from '../AC/saveBoardSize';
 
 import classNames from 'classnames';
 
-class changeSizeButton extends Component {
+class ChangeSizeButton extends Component {
 
   render() {
     const {text,boardSize, boardWidth, boardLength}=this.props;
@@ -34,4 +34,4 @@ const mapStateToProps = state=>({
   boardSize: state.generation.get('boardSize')
 });
 
-export default connect(mapStateToProps, {saveBoardSize, deleteTimer})(changeSizeButton);
+export default connect(mapStateToProps, {saveBoardSize, deleteTimer})(ChangeSizeButton);

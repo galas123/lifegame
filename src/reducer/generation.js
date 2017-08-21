@@ -6,15 +6,15 @@ import {
   DELETE_TIMER,
   CHANGE_CELL_VALUE,
   CHANGE_SPEED,
-  SAVE_SIZE
+  SAVE_BOARD_SIZE
 } from '../constants';
 
 import {Map, List}  from 'immutable';
 
 const defaultState = Map({
-  boardSize      : List([12, 12]),
+  boardSize      : Map({width:12,height:12}),
   generationSpeed: 500,
-  generations    : List([
+  population    : List([
       List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
       List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
       List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
@@ -34,21 +34,21 @@ const defaultState = Map({
 export default (state = defaultState, action) => {
   const {type, payload} = action;
   switch (type) {
-    case  SAVE_SIZE:
+    case  SAVE_BOARD_SIZE:
       return state.setIn(['boardSize', 0], payload.boardWidth).setIn(['boardSize', 1], payload.boardLength);
     case CHANGE_SPEED:
       return state.set('generationSpeed', payload.speedValue);
     case CHANGE_CELL_VALUE:
       const {lineIndex, rowIndex} = payload;
-      const newValue = (state.getIn(['generations', lineIndex, rowIndex]) == DEAD) ? NEWBORN : DEAD;
-      return state.setIn(['generations', lineIndex, rowIndex], newValue);
+      const newValue = (state.getIn(['population', lineIndex, rowIndex]) == DEAD) ? NEWBORN : DEAD;
+      return state.setIn(['population', lineIndex, rowIndex], newValue);
     case DELETE_TIMER:
       const width  = state.getIn(['boardSize', 0]);
       const length = state.getIn(['boardSize', 1]);
-      if (payload.clearFlag) return state.set('generations', generatorDeadBoard(width, length)).set('iteration', 0);
+      if (payload.clearFlag) return state.set('population', generatorDeadBoard(width, length)).set('iteration', 0);
       break;
     case ITERATION:
-      const oldPopulation = state.get('generations');
+      const oldPopulation = state.get('population');
       let newPopulation   = oldPopulation.slice(0);
 
       oldPopulation.forEach(
@@ -88,7 +88,7 @@ export default (state = defaultState, action) => {
                 break;
             }
 
-            let prevLine = state.getIn(['generations', prevLineIndex]);
+            let prevLine = state.getIn(['population', prevLineIndex]);
             neighboursArray.push(prevLine.get(prevIndex));
             neighboursArray.push(prevLine.get(index));
             neighboursArray.push(prevLine.get(nextIndex));
@@ -97,7 +97,7 @@ export default (state = defaultState, action) => {
             neighboursArray.push(oldPopulationLine.get(nextIndex));
 
 
-            let nextLine = state.getIn(['generations', nextLineIndex]);
+            let nextLine = state.getIn(['population', nextLineIndex]);
             neighboursArray.push(nextLine.get(prevIndex));
             neighboursArray.push(nextLine.get(index));
             neighboursArray.push(nextLine.get(nextIndex));
@@ -123,7 +123,7 @@ export default (state = defaultState, action) => {
         }
       )
       const counter = state.get('iteration') + 1;
-      return state.set('generations', newPopulation).set('iteration', counter);
+      return state.set('population', newPopulation).set('iteration', counter);
   }
   return state;
 }

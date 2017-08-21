@@ -7,7 +7,7 @@ import {deleteTimer} from '../AC/deleteTimer';
 
 import classNames from 'classnames';
 
-class stopBtn extends Component {
+class StopBtn extends Component {
   render() {
     const {text, isStarted, clearFlag}=this.props;
     const btnClass = classNames({
@@ -27,4 +27,4 @@ class stopBtn extends Component {
   }
 }
 
-export default connect(null, {deleteTimer})(stopBtn);
+export default connect(null, {deleteTimer})(StopBtn);

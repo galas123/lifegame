@@ -1,7 +1,5 @@
 import {DELETE_TIMER} from '../constants';
-import {iteration} from '../AC/iteration';
-import {putTimerIdIntoStorage} from '../AC/putTimerIdIntoStorage';
-
+import {startGame} from '../AC/startGame';
 
 export const deleteTimer = (clearFlag) => {
   return (dispatch, getState) => {
@@ -17,8 +15,7 @@ export const deleteTimer = (clearFlag) => {
       });
     }
     else {
-      let timerId = setInterval(()=>dispatch(iteration()), generationSpeed);
-      dispatch (putTimerIdIntoStorage(timerId));
+      dispatch(startGame());
     }
   }
-}
+};

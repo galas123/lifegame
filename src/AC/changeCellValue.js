@@ -6,4 +6,4 @@ export const changeCellValue = (lineIndex, rowIndex) => ({
     lineIndex,
     rowIndex
   }
-})
+});

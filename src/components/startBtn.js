@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import {startGame} from '../AC/startGame';
 
-class startBtn extends Component {
+class StartBtn extends Component {
   render() {
     return (
       <button type="button" className="btn start-btn" onClick={this.onClick}>Start</button>
@@ -19,4 +19,4 @@ class startBtn extends Component {
   };
 }
 
-export default connect(null, {startGame})(startBtn);
+export default connect(null, {startGame})(StartBtn);

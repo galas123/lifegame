@@ -1,5 +1,5 @@
 import {
-  START_GENERATION,
+  ITERATION,
   DEAD,
   ALIVE,
   NEWBORN,
@@ -37,7 +37,6 @@ export default (state = defaultState, action) => {
     case  SAVE_SIZE:
       return state.setIn(['boardSize', 0], payload.boardWidth).setIn(['boardSize', 1], payload.boardLength);
     case CHANGE_SPEED:
-      console.log('change speed', payload.speedValue);
       return state.set('generationSpeed', payload.speedValue);
       break;
     case CHANGE_CELL_VALUE:
@@ -49,9 +48,9 @@ export default (state = defaultState, action) => {
     case DELETE_TIMER:
       const width  = state.getIn(['boardSize', 0]);
       const length = state.getIn(['boardSize', 1]);
-      if (payload) return state.set('generations', generatorDeadBoard(width, length)).set('iteration', 0);
+      if (payload.clearFlag) return state.set('generations', generatorDeadBoard(width, length)).set('iteration', 0);
       break;
-    case START_GENERATION:
+    case ITERATION:
       const oldPopulation = state.get('generations');
       let newPopulation   = oldPopulation.slice(0);
 

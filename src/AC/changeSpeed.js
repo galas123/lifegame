@@ -1,6 +1,6 @@
 import {CHANGE_SPEED} from '../constants';
 import {deleteTimer} from './deleteTimer';
-import {startGame} from './startGame';
+import {iteration} from './iteration';
 import {putTimerIdIntoStorage} from './putTimerIdIntoStorage';
 
 
@@ -17,7 +17,7 @@ export const changeSpeed = (speedValue) => {
 
     if (isStarted) {
       dispatch (deleteTimer(false))
-      let newTimerId = setInterval(()=>dispatch(startGame()), speedValue);
+      let newTimerId = setInterval(()=>dispatch(iteration()), speedValue);
       dispatch (putTimerIdIntoStorage(newTimerId));
     }
   }

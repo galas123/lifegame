@@ -4,7 +4,7 @@ import React, {
 import {connect} from 'react-redux';
 
 import {changeSpeed} from '../AC/changeSpeed';
-import {startGame} from '../AC/startGame';
+import {iteration} from '../AC/iteration';
 import {putTimerIdIntoStorage} from '../AC/putTimerIdIntoStorage';
 import {deleteTimer} from '../AC/deleteTimer';
 
@@ -36,4 +36,4 @@ const mapStateToProps = state=> {
   };
 }
 
-export default connect(mapStateToProps, {changeSpeed, putTimerIdIntoStorage, startGame, deleteTimer})(speedBtn);
+export default connect(mapStateToProps, {changeSpeed, putTimerIdIntoStorage, iteration, deleteTimer})(speedBtn);

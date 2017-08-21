@@ -4,7 +4,6 @@ import React, {
 import {connect} from 'react-redux';
 
 import {startGame} from '../AC/startGame';
-import {putTimerIdIntoStorage} from '../AC/putTimerIdIntoStorage';
 
 class startBtn extends Component {
   render() {
@@ -14,17 +13,10 @@ class startBtn extends Component {
   }
 
   onClick = (ev) => {
-    const {startGame, putTimerIdIntoStorage, generationSpeed}=this.props;
+    const {startGame}=this.props;
     ev.preventDefault();
-    let timerId=setInterval(startGame, generationSpeed);
-    putTimerIdIntoStorage(timerId);
-
+    startGame();
   };
 }
 
-const mapStateToProps = state=> {
-  return {
-    generationSpeed: state.generation.get('generationSpeed')
-  };
-}
-export default connect(mapStateToProps, {startGame, putTimerIdIntoStorage})(startBtn);
+export default connect(null, {startGame})(startBtn);

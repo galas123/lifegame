@@ -18,7 +18,7 @@ export default class Container extends Component {
           <div className="controls-frame">
             <StartBtn/>
             <StopBtn text="Pause"/>
-            <StopBtn text="Clear" cleaning/>
+            <StopBtn text="Clear" clearFlag/>
             <div className="generation-number">
               <h3>Generation:</h3>
               <GenerationNumber/>

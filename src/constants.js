@@ -9,4 +9,5 @@ export const SLOW=1000;
 export const MEDIUM=500;
 export const FAST=250;
 export const CHANGE_SPEED="CHANGE_SPEED";
-export const SAVE_SIZE="SAVE_SIZE"
+export const SAVE_SIZE="SAVE_SIZE";
+export const ITERATION = "ITERATION"

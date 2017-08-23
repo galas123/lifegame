@@ -1,4 +1,4 @@
-import {DELETE_TIMER, SAVE_TIMERID} from '../constants';
+import {CLEAR_BOARD, SAVE_TIMERID} from '../constants';
 
 const defaultState = {
   timerId:null
@@ -10,7 +10,7 @@ export default (state = defaultState, action) => {
     case SAVE_TIMERID:
       return {timerId:payload};
 
-    case DELETE_TIMER:
+    case CLEAR_BOARD:
       clearInterval(state.timerId);
       return {timerId:null};
 

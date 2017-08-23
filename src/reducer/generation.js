@@ -3,49 +3,38 @@ import {
   DEAD,
   ALIVE,
   NEWBORN,
-  DELETE_TIMER,
+  CLEAR_BOARD,
   CHANGE_CELL_VALUE,
   CHANGE_SPEED,
-  SAVE_BOARD_SIZE
+  SAVE_BOARD_SIZE,
+  SMALL_BOARD,
+  MEDIUM
 } from '../constants';
+
+import {exampleBoard} from '../exampleBoard';
 
 import {Map, List}  from 'immutable';
 
 const defaultState = Map({
-  boardSize      : Map({width:12,height:12}),
-  generationSpeed: 500,
-  population    : List([
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, ALIVE, ALIVE, ALIVE, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, NEWBORN, DEAD, ALIVE, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, ALIVE, DEAD, ALIVE, ALIVE, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, ALIVE, DEAD, DEAD, DEAD, ALIVE, ALIVE, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]),
-      List([DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD])
-    ]
-  ),
+  boardSize      : SMALL_BOARD,
+  generationSpeed: MEDIUM,
+  population    : exampleBoard,
   iteration      : 0
 });
 export default (state = defaultState, action) => {
   const {type, payload} = action;
   switch (type) {
     case  SAVE_BOARD_SIZE:
-      return state.setIn(['boardSize', 0], payload.boardWidth).setIn(['boardSize', 1], payload.boardLength);
+      return state.set('boardSize', payload.lable);
     case CHANGE_SPEED:
       return state.set('generationSpeed', payload.speedValue);
     case CHANGE_CELL_VALUE:
       const {lineIndex, rowIndex} = payload;
       const newValue = (state.getIn(['population', lineIndex, rowIndex]) == DEAD) ? NEWBORN : DEAD;
       return state.setIn(['population', lineIndex, rowIndex], newValue);
-    case DELETE_TIMER:
-      const width  = state.getIn(['boardSize', 0]);
-      const length = state.getIn(['boardSize', 1]);
-      if (payload.clearFlag) return state.set('population', generatorDeadBoard(width, length)).set('iteration', 0);
+    case CLEAR_BOARD:
+      const size  = state.get('boardSize');
+      if (payload.clearFlag) return state.set('population', generatorDeadBoard(size.width, size.height)).set('iteration', 0);
       break;
     case ITERATION:
       const oldPopulation = state.get('population');
@@ -131,10 +120,7 @@ export default (state = defaultState, action) => {
 const generatorDeadBoard = (n, m)=> {
   const board = [];
   for (let i = 0; i < n; i++) {
-    let newLine = [];
-    for (let j = 0; j < m; j++) {
-      newLine.push(DEAD);
-    }
+    let newLine = Array(m).fill(DEAD);
     board.push(List(newLine));
   }
   return List(board);

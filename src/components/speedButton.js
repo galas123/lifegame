@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {changeSpeed} from '../AC/changeSpeed';
 import {iteration} from '../AC/iteration';
 import {saveTimerId} from '../AC/saveTimerId';
-import {deleteTimer} from '../AC/deleteTimer';
+import {toggleGeneration} from '../AC/toggleGeneration';
 
 import classNames from 'classnames';
 
@@ -19,7 +19,7 @@ class SpeedBtn extends Component {
       'pushed-btn': speedValue===generationSpeed
     });
     return (
-      <button className={btnClass} onClick={this.onClick}>{text}</button>
+      <button type="button" className={btnClass} onClick={this.onClick}>{text}</button>
     )
   }
 
@@ -36,4 +36,4 @@ const mapStateToProps = state=> {
   };
 }
 
-export default connect(mapStateToProps, {changeSpeed, saveTimerId, iteration, deleteTimer})(SpeedBtn);
+export default connect(mapStateToProps, {changeSpeed, saveTimerId, iteration, toggleGeneration})(SpeedBtn);

@@ -1,5 +1,5 @@
 import {CHANGE_SPEED} from '../constants';
-import {deleteTimer} from './deleteTimer'
+import {toggleGeneration} from './toggleGeneration'
 import {startGame} from './startGame';
 
 
@@ -15,7 +15,7 @@ export const changeSpeed = (speedValue) => {
     });
 
     if (isStarted) {
-      dispatch (deleteTimer(false));
+      dispatch (toggleGeneration(false));
       dispatch(startGame());
     }
   }

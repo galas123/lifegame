@@ -1,4 +1,4 @@
-import {FAST, MEDIUM, SLOW} from './constants';
+import {FAST, MEDIUM, SLOW, SMALL_BOARD, LARGE_BOARD, MEDIUM_BOARD} from './constants';
 import React, {Component} from 'react';
 import './App.css';
 import Board from './components/board';
@@ -28,9 +28,9 @@ export default class Container extends Component {
             <Board classname={"life-game-board"}/>
             <div className="board-size-controls">
               <h3 className="board-size_capture"> Board size</h3>
-              <ChangeSizeButton text="12X12" boardLength='12' boardWidth='12'/>
-              <ChangeSizeButton text="25X35" boardLength='35' boardWidth='25'/>
-              <ChangeSizeButton text="40X50" boardLength='50' boardWidth='40'/>
+              <ChangeSizeButton text="12X12" lable={SMALL_BOARD}/>
+              <ChangeSizeButton text="25X35" lable={MEDIUM_BOARD}/>
+              <ChangeSizeButton text="40X50" lable={LARGE_BOARD}/>
             </div>
           </div>
 
@@ -42,8 +42,6 @@ export default class Container extends Component {
               <SpeedButton text="fast" speedValue={FAST}/>
             </div>
           </div>
-
-
         </div>
       </div>
     );

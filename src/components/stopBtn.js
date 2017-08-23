@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import {connect} from 'react-redux';
 
-import {deleteTimer} from '../AC/deleteTimer';
+import {toggleGeneration} from '../AC/toggleGeneration';
 
 import classNames from 'classnames';
 
@@ -16,15 +16,15 @@ class StopBtn extends Component {
       'pushed-btn': !isStarted && !clearFlag
     });
     return (
-      <button className={btnClass} onClick={this.onClick}>{text}</button>
+      <button type="button" className={btnClass} onClick={this.onClick}>{text}</button>
     )
   }
 
   onClick = (ev) => {
-    const {deleteTimer, clearFlag}=this.props;
+    const {toggleGeneration, clearFlag}=this.props;
     ev.preventDefault();
-    deleteTimer(clearFlag);
+    toggleGeneration(clearFlag);
   }
 }
 
-export default connect(null, {deleteTimer})(StopBtn);
+export default connect(null, {toggleGeneration})(StopBtn);

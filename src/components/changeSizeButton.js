@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import {connect} from 'react-redux';
 
-import {deleteTimer} from '../AC/deleteTimer';
+import {toggleGeneration} from '../AC/toggleGeneration';
 import {saveBoardSize} from '../AC/saveBoardSize';
 
 import classNames from 'classnames';
@@ -11,27 +11,26 @@ import classNames from 'classnames';
 class ChangeSizeButton extends Component {
 
   render() {
-    const {text,boardSize, boardWidth, boardLength}=this.props;
+    const {text,boardSize, lable}=this.props;
     const btnClass = classNames({
       'btn': true,
       'size-btn': true,
-      'pushed-btn': Number(boardSize.get(0))===Number(boardWidth) && Number(boardSize.get(1))===Number(boardLength)
+      'pushed-btn': boardSize===lable
     });
     return (
-      <button className={btnClass} onClick={this.onClick}>{text}</button>
+      <button type="button" className={btnClass} onClick={this.onClick}>{text}</button>
     )
   }
 
   onClick = (ev) => {
-    const {deleteTimer, saveBoardSize, boardWidth, boardLength}=this.props;
+    const {toggleGeneration, saveBoardSize, lable}=this.props;
     ev.preventDefault();
-    saveBoardSize(boardWidth,boardLength);
-    deleteTimer(true);
-
+    saveBoardSize(lable);
+    toggleGeneration(true);
   };
 }
 const mapStateToProps = state=>({
   boardSize: state.generation.get('boardSize')
 });
 
-export default connect(mapStateToProps, {saveBoardSize, deleteTimer})(ChangeSizeButton);
+export default connect(mapStateToProps, {saveBoardSize, toggleGeneration})(ChangeSizeButton);
